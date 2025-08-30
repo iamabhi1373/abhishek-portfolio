@@ -121,16 +121,6 @@ export const personalInfo = {
       icon: "utensils",
       gradient: "from-orange-500 to-red-500",
       githubUrl: "https://github.com/iamabhi1373/resturant-chatbot"
-    },
-    {
-      id: 6,
-      title: "Personal Portfolio Website",
-      description: "Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features cyberpunk-themed design with smooth animations, interactive elements, and optimized performance.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-      icon: "globe",
-      gradient: "from-cyan-500 to-blue-500",
-      liveUrl: "https://abhishek-portfolio-abhisheks-projects-079e00d3.vercel.app/",
-      githubUrl: "https://github.com/iamabhi1373/abhishek-portfolio"
     }
   ];
   
