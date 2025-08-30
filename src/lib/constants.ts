@@ -2,14 +2,14 @@ export const personalInfo = {
     name: "Abhishek Kumar Gupta",
     email: "iamabhi1373@gmail.com",
     phone: "+91-6386565531",
-    linkedin: "https://linkedin.com/in/abhishekgupta",
-    github: "https://github.com/abhishek",
-    title: "Software Engineer",
+    linkedin: "https://www.linkedin.com/in/abhishek-kumar-gupta-627985251/",
+    github: "https://github.com/iamabhi1373",
+    title: "AI/ML Engineer",
     subtitles: [
-      "Software Engineer", 
-      "AI/ML Specialist", 
+      "AI/ML Engineer", 
+      "Data Science Specialist", 
       "Competitive Programmer", 
-      "Problem Solver"
+      "Full-Stack Developer"
     ]
   };
   
@@ -17,26 +17,32 @@ export const personalInfo = {
     {
       platform: "LeetCode",
       icon: "code",
-      problemsSolved: 545,
+      problemsSolved: 585,
       rating: 1530,
       description: "Problems Solved",
-      color: "cyber-green"
+      color: "cyber-green",
+      username: "iamabhi1373",
+      profileUrl: "https://leetcode.com/iamabhi1373"
     },
     {
       platform: "CodeChef",
       icon: "utensils", 
       rating: 1470,
       rank: 370,
-      description: "Rating (2-star)",
-      color: "cyber-blue"
+      description: "Rating (2-star) | Best Rank: 370",
+      color: "cyber-blue",
+      username: "iamabhi1373",
+      profileUrl: "https://www.codechef.com/users/iamabhi1373"
     },
     {
       platform: "Codeforces",
       icon: "fighter-jet",
-      rating: 1351,
-      rank: 1208,
-      description: "Rating (Pupil)",
-      color: "cyber-purple"
+      rating: 1539,
+      rank: 664,
+      description: "Rating (Specialist) | Best Rank: 664",
+      color: "cyber-purple",
+      username: "iamabhi1373",
+      profileUrl: "https://codeforces.com/profile/iamabhi1373"
     }
   ];
   
@@ -44,68 +50,101 @@ export const personalInfo = {
     ideathonWins: 2,
     codeRelayWins: 1,
     totalWinnings: 16000,
-    prizes: ["₹12,500", "₹2,500", "₹1,000"]
+    prizes: ["₹12,500", "₹2,500", "₹1,000"],
+    description: "2× Ideathon Winner + 1× CodeRelay Winner"
   };
+
+  export const experience = [
+    {
+      title: "Summer Intern, Data Analytics Lab",
+      company: "IIIT Allahabad (IIITA)",
+      period: "May 2025 – July 2025",
+      description: "Worked under Dr. Manish Kumar on Alzheimer's disease prediction using federated learning.",
+      icon: "university"
+    },
+    {
+      title: "Amazon ML Summer School 2025",
+      company: "Amazon (Remote)",
+      period: "Aug 2025 (Current)",
+      description: "Selected among the top 3,000 out of 60,000+ applicants for Amazon's ML School.",
+      icon: "graduation-cap"
+    }
+  ];
   
   export const projects = [
     {
       id: 1,
-      title: "LLaMA-3.1 Chatbot",
-      description: "Developed a lightweight, friendly chatbot using LLaMA-3.1-8B-Instruct with llama.cpp and Gradio. Deployed via Gradio on Hugging Face Spaces with CPU optimization and secure token handling.",
-      technologies: ["LLaMA-3.1", "Gradio", "Hugging Face", "CI/CD"],
-      icon: "robot",
-      gradient: "from-blue-500 to-purple-500"
+      title: "Deep Learning-based OCR System for Handwritten Text Recognition and Language Translation",
+      description: "Implemented an OCR and translation pipeline, increasing handwritten text recognition accuracy from 81% to 97.33% using cloud-based Vision OCR. Deployed via Streamlit with Google Translation API for real-time language translation.",
+      technologies: ["Python", "TensorFlow", "Flask", "API", "Streamlit"],
+      icon: "language",
+      accuracy: 97.33,
+      gradient: "from-green-500 to-teal-500",
+      liveUrl: "https://abhishekocr.streamlit.app/",
+      githubUrl: "https://github.com/iamabhi1373/ocr-translation-app"
     },
     {
       id: 2,
-      title: "Coffee Shop AI Assistant",
-      description: "React Native chatbot app simulating real-time coffee shop customer service, integrating LLMs via LangChain with RAG and Pinecone for personalized responses. Built a Recommendation Engine and integrated Slack for real-time staff alerts.",
-      technologies: ["React Native", "LangChain", "Pinecone", "OpenAI API", "Flask"],
-      icon: "coffee",
-      gradient: "from-orange-500 to-red-500"
+      title: "Alzheimer's Disease Prediction using Federated Learning",
+      description: "Developed federated learning model for Alzheimer's disease prediction using Enhanced CNN technique across 6 clients for 25 rounds, across IID and non-IID datasets achieving 94.6% accuracy while preserving patient privacy. Deployed using Streamlit and hosted on Hugging Face Spaces for accessible medical diagnostics.",
+      technologies: ["Python", "Enhanced-CNN", "Streamlit", "Hugging Face Spaces"],
+      icon: "brain",
+      accuracy: 94.6,
+      gradient: "from-purple-500 to-pink-500",
+      liveUrl: "https://huggingface.co/spaces/iamabhi1373/alzheimer-disease-prediction",
+      githubUrl: "https://github.com/iamabhi1373/alzheimer-disease-prediction"
     },
     {
       id: 3,
-      title: "Deep Learning OCR System",
-      description: "Implemented a RCNN-powered OCR application with EasyOCR, KerasOCR and TrOCR to enhance handwritten text recognition. Improved accuracy by 81% across 27+ documents, then applied VisionOCR cloud server achieving 97.33% accuracy.",
-      technologies: ["Python", "TensorFlow", "OCR", "Flask", "Streamlit"],
-      icon: "eye",
-      accuracy: 97.33,
-      gradient: "from-green-500 to-teal-500"
+      title: "Gmail Automation Agent",
+      description: "Developed a Python-based tool integrating Gemini API with Gmail to automatically generate and send personalized emails. Implemented features like customization and bulk emailing to reduce manual effort.",
+      technologies: ["Python", "Gemini API", "Gmail"],
+      icon: "envelope",
+      gradient: "from-red-500 to-orange-500",
+      githubUrl: "https://github.com/iamabhi1373/gmail-agent"
     },
     {
       id: 4,
-      title: "Fake News Detection AI",
-      description: "Fine-tuned a DistilBERT model on the Kaggle Fake and Real News dataset, achieving over 92% accuracy in binary classification. Built and deployed a real-time fake news detection app using Gradio with safetensors.",
-      technologies: ["Python", "PyTorch", "DistilBERT", "Hugging Face", "Gradio"],
-      icon: "shield-alt",
-      accuracy: 92,
-      gradient: "from-red-500 to-pink-500"
+      title: "TriLLM Arena - AI Model Comparison Platform",
+      description: "Built a modern web app enabling real-time comparison of responses from three leading AI providers (OpenAI, DeepSeek, Gemini) through a unified interface. Focused on performance, responsive design, and intuitive user experience with parallel API calls and token usage tracking.",
+      technologies: ["React", "Node.js", "Express", "OpenAI API", "DeepSeek API", "Gemini API"],
+      icon: "balance-scale",
+      gradient: "from-blue-500 to-purple-500",
+      liveUrl: "https://tri-provider-playground-89da5i6j9-abhisheks-projects-079e00d3.vercel.app/",
+      githubUrl: "https://github.com/iamabhi1373/tri-provider-playground"
+    },
+    {
+      id: 5,
+      title: "Restaurant RAG Application",
+      description: "Developed an interactive app for managing restaurant menus and customer feedback with Retrieval-Augmented Generation (RAG). Implemented custom vector search using Pinecone to enable intelligent recommendations and query-based insights.",
+      technologies: ["Python", "Streamlit", "Gemini API", "RAG", "Pinecone", "LLMs"],
+      icon: "utensils",
+      gradient: "from-orange-500 to-red-500",
+      githubUrl: "https://github.com/iamabhi1373/resturant-chatbot"
+    },
+    {
+      id: 6,
+      title: "Personal Portfolio Website",
+      description: "Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features cyberpunk-themed design with smooth animations, interactive elements, and optimized performance.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+      icon: "globe",
+      gradient: "from-cyan-500 to-blue-500",
+      liveUrl: "https://abhishek-portfolio-abhisheks-projects-079e00d3.vercel.app/",
+      githubUrl: "https://github.com/iamabhi1373/abhishek-portfolio"
     }
   ];
   
   export const skills = {
     programming: [
-      { name: "Python", level: 95 },
       { name: "Java", level: 90 },
+      { name: "Python", level: 95 },
       { name: "JavaScript", level: 85 },
       { name: "C/C++", level: 80 }
     ],
-    machineLearning: [
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 85 },
-      { name: "Scikit-Learn", level: 95 },
-      { name: "OpenCV", level: 80 }
-    ],
-    cloudPlatforms: [
-      { name: "Microsoft Azure", level: 85 },
-      { name: "AWS", level: 70 },
-      { name: "Hugging Face", level: 90 }
-    ],
-    tools: [
-      { name: "Git", level: 95 },
-      { name: "Linux/Unix", level: 85 },
-      { name: "Docker", level: 75 }
+    aiml: [
+      { name: "Generative AI", level: 90 },
+      { name: "Machine Learning", level: 88 },
+      { name: "Deep Learning", level: 85 }
     ]
   };
   

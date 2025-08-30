@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { personalInfo, achievements, projects, skills } from '@/lib/constants';
+import { personalInfo, achievements, projects, skills, experience, competitionWins } from '@/lib/constants';
 
 // Typing Animation Component
 function TypingAnimation({ texts, className = '' }: { texts: string[], className?: string }) {
@@ -75,6 +75,7 @@ function FloatingNav() {
 
   const navItems = [
     { id: 'home', label: 'Home', icon: 'home' },
+    { id: 'experience', label: 'Experience', icon: 'briefcase' },
     { id: 'achievements', label: 'Achievements', icon: 'trophy' },
     { id: 'projects', label: 'Projects', icon: 'code' },
     { id: 'skills', label: 'Skills', icon: 'cogs' },
@@ -94,9 +95,9 @@ function FloatingNav() {
             <motion.button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="w-12 h-12 rounded-full bg-cyber-slate hover:bg-cyber-blue/20 text-cyber-blue hover:text-white transition-all duration-300 flex items-center justify-center group"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="nav-item w-12 h-12 rounded-full bg-cyber-slate hover:bg-cyber-blue/20 text-cyber-blue hover:text-white transition-all duration-300 flex items-center justify-center group"
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 + 1.2 }}
@@ -116,19 +117,23 @@ function FloatingNav() {
 // Achievement Card Component
 function AchievementCard({ achievement, index }: { achievement: any, index: number }) {
   return (
-    <motion.div
-      className="glass-morphism p-6 rounded-xl hover-glow"
+    <motion.a
+      href={achievement.profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="glass-morphism-strong p-6 rounded-xl hover-glow card-hover-effect block cursor-pointer"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
     >
       <div className="text-center">
         <div className={`text-cyber-blue text-4xl mb-4`}>
           <i className={`fas fa-${achievement.icon}`}></i>
         </div>
         
-        <h3 className="font-orbitron text-xl font-bold mb-2 text-white">
+        <h3 className="font-orbitron text-xl font-bold mb-2 text-gradient">
           {achievement.platform}
         </h3>
         
@@ -145,12 +150,58 @@ function AchievementCard({ achievement, index }: { achievement: any, index: numb
           
           {achievement.rank && (
             <div className="text-gray-300">
-              Rank: {achievement.rank}
+              Best Rank: {achievement.rank}
             </div>
           )}
           
           <p className="text-gray-400 text-sm mt-2">
             {achievement.description}
+          </p>
+          
+          {achievement.username && (
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <p className="text-cyber-blue text-xs font-mono">
+                @{achievement.username}
+              </p>
+              <i className="fas fa-external-link-alt text-xs text-cyber-blue opacity-70"></i>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+// Experience Card Component
+function ExperienceCard({ exp, index }: { exp: any, index: number }) {
+  return (
+    <motion.div
+      className="glass-morphism p-6 rounded-xl hover-glow"
+      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex items-start space-x-4">
+        <div className={`text-cyber-blue text-3xl`}>
+          <i className={`fas fa-${exp.icon}`}></i>
+        </div>
+        
+        <div className="flex-1">
+          <h3 className="font-orbitron text-xl font-bold mb-1 text-white">
+            {exp.title}
+          </h3>
+          
+          <h4 className="text-cyber-blue font-semibold mb-2">
+            {exp.company}
+          </h4>
+          
+          <p className="text-gray-400 text-sm mb-3">
+            {exp.period}
+          </p>
+          
+          <p className="text-gray-300 leading-relaxed">
+            {exp.description}
           </p>
         </div>
       </div>
@@ -174,9 +225,39 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         </div>
         
         <div className="flex-1">
-          <h3 className="font-orbitron text-xl font-bold mb-2 text-white">
-            {project.title}
-          </h3>
+          <div className="flex items-start justify-between mb-3">
+            <h3 className="font-orbitron text-xl font-bold text-gradient flex-1">
+              {project.title}
+            </h3>
+            <div className="flex space-x-3 ml-4">
+              {project.liveUrl && (
+                <motion.a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyber-blue hover:text-white transition-all duration-300 p-2 rounded-full bg-cyber-slate/50 hover:bg-cyber-blue/20"
+                  title="Live Demo"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <i className="fas fa-external-link-alt text-lg"></i>
+                </motion.a>
+              )}
+              {project.githubUrl && (
+                <motion.a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyber-blue hover:text-white transition-all duration-300 p-2 rounded-full bg-cyber-slate/50 hover:bg-cyber-blue/20"
+                  title="GitHub Repository"
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <i className="fab fa-github text-lg"></i>
+                </motion.a>
+              )}
+            </div>
+          </div>
           
           <p className="text-gray-300 mb-4 leading-relaxed">
             {project.description}
@@ -202,12 +283,17 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech: string, techIndex: number) => (
-              <span
+              <motion.span
                 key={techIndex}
-                className="px-3 py-1 bg-cyber-slate text-cyber-blue text-xs font-medium rounded-full border border-cyber-blue/30"
+                className="px-3 py-1 bg-cyber-slate text-cyber-blue text-xs font-medium rounded-full border border-cyber-blue/30 hover:bg-cyber-blue/10 hover:border-cyber-blue/60 transition-all duration-300"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: techIndex * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                viewport={{ once: true }}
               >
                 {tech}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>
@@ -272,7 +358,7 @@ export default function Home() {
             <div className="mb-8">
               <h1 className="font-orbitron text-6xl md:text-8xl font-black mb-4">
                 {personalInfo.name.split(' ').slice(0, 2).join(' ')}<br />
-                <span className="text-cyber-blue">
+                <span className="text-gradient animate-gradient">
                   {personalInfo.name.split(' ').slice(2).join(' ')}
                 </span>
               </h1>
@@ -291,25 +377,83 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <button
+              <motion.button
                 onClick={downloadResume}
                 className="neon-border px-8 py-4 rounded-lg font-rajdhani text-lg font-semibold text-cyber-blue hover:text-white hover:bg-cyber-blue/10 transition-all duration-300"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(0, 195, 255, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="fas fa-download mr-2"></i>
                 Download Resume
-              </button>
+              </motion.button>
               
-              <button
+              <motion.button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-cyber-blue hover:bg-cyber-blue/80 text-white rounded-lg font-rajdhani text-lg font-semibold transition-all duration-300"
+                className="px-8 py-4 bg-cyber-blue hover:bg-cyber-blue/80 text-white rounded-lg font-rajdhani text-lg font-semibold transition-all duration-300 animate-pulse-glow"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <i className="fas fa-envelope mr-2"></i>
                 Get In Touch
-              </button>
+              </motion.button>
             </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <motion.h2 
+            className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-cyber-blue">EXPERIENCE</span>
+          </motion.h2>
+          
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <ExperienceCard key={exp.title} exp={exp} index={index} />
+            ))}
+          </div>
+          
+          {/* Competition Wins Highlight */}
+          <motion.div 
+            className="mt-12 glass-morphism p-8 rounded-2xl text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="font-orbitron text-2xl font-bold mb-4 text-cyber-blue">
+              Competition Achievements
+            </h3>
+            <p className="text-gray-300 mb-4">
+              {competitionWins.description}
+            </p>
+            <div className="flex justify-center items-center space-x-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-cyber-green">
+                  ₹{competitionWins.totalWinnings.toLocaleString()}
+                </div>
+                <div className="text-gray-400 text-sm">Total Winnings</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-cyber-blue">
+                  {competitionWins.ideathonWins + competitionWins.codeRelayWins}
+                </div>
+                <div className="text-gray-400 text-sm">Competitions Won</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="section-divider"></div>
 
       {/* Achievements Section */}
       <section id="achievements" className="py-20 relative">
@@ -332,6 +476,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="section-divider"></div>
+
       {/* Projects Section */}
       <section id="projects" className="py-20 relative">
         <div className="container mx-auto px-6">
@@ -353,6 +500,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="section-divider"></div>
+
       {/* Skills Section */}
       <section id="skills" className="py-20 relative">
         <div className="container mx-auto px-6">
@@ -363,34 +513,34 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <span className="text-cyber-blue">TECH STACK</span>
+            <span className="text-cyber-blue">SKILLS</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Programming Languages */}
             <motion.div 
-              className="glass-morphism p-8 rounded-2xl"
+              className="glass-morphism-strong p-8 rounded-2xl card-hover-effect"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-rajdhani text-2xl font-bold mb-6 text-cyber-blue">Programming Languages</h3>
+              <h3 className="font-rajdhani text-2xl font-bold mb-6 text-gradient">Programming Languages</h3>
               {skills.programming.map((skill, index) => (
                 <SkillProgress key={skill.name} {...skill} delay={index * 0.1} />
               ))}
             </motion.div>
 
-            {/* Machine Learning */}
+            {/* AI/ML */}
             <motion.div 
-              className="glass-morphism p-8 rounded-2xl"
+              className="glass-morphism-strong p-8 rounded-2xl card-hover-effect"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-rajdhani text-2xl font-bold mb-6 text-cyber-blue">Machine Learning</h3>
-              {skills.machineLearning.map((skill, index) => (
+              <h3 className="font-rajdhani text-2xl font-bold mb-6 text-gradient">AI & Machine Learning</h3>
+              {skills.aiml.map((skill, index) => (
                 <SkillProgress key={skill.name} {...skill} delay={index * 0.1 + 0.2} />
               ))}
             </motion.div>
