@@ -110,7 +110,7 @@ export const personalInfo = {
       technologies: ["React", "Node.js", "Express", "OpenAI API", "DeepSeek API", "Gemini API"],
       icon: "balance-scale",
       gradient: "from-blue-500 to-purple-500",
-      liveUrl: "https://tri-provider-playground-89da5i6j9-abhisheks-projects-079e00d3.vercel.app/",
+      liveUrl: "https://tri-provider-playground.vercel.app/",
       githubUrl: "https://github.com/iamabhi1373/tri-provider-playground"
     },
     {
